@@ -1,0 +1,5 @@
+# Ignorar modelo entrenado
+model/diabetesv1.joblib
+
+# Ignorar dataset
+data/diabetes_prediction_dataset.csv
