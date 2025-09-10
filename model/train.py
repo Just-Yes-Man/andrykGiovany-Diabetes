@@ -3,6 +3,7 @@
 import numpy as np
 import pandas as pd
 import warnings
+from joblib import dump
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report,confusion_matrix
 from sklearn.utils import resample
 from sklearn.ensemble import RandomForestClassifier
@@ -10,6 +11,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split, GridSearchCV
+import pathlib
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 
@@ -28,7 +30,7 @@ print("Valores únicos en smoking_history:", Diabetes_df['smoking_history'].uniq
 gender_encode = {
     'Male': 0,
     'Female': 1,
-    'Other': 2   # lo que faltaba
+    'Other': 2   
 }
 
 smoking_encode = {
@@ -88,6 +90,9 @@ Rf=RandomForestClassifier().fit(X_train, y_train)
 eval_train_rf=Rf.predict(X_train)
 eval_test_rf=Rf.predict(X_test)
 
+print(X_test)
+print(y_test)
+
 acc_rf=accuracy_score(y_test, eval_test_rf)
 precision_rf=precision_score(y_test, eval_test_rf)
 recall_rf=recall_score(y_test, eval_test_rf)
@@ -104,6 +109,8 @@ result_df=({
 })
 result_df=pd.DataFrame(result_df, index=['Random Forest'])
 print(result_df)
+
+dump(Rf, pathlib.Path('model/diabetesv1.joblib'))
 
 
 
