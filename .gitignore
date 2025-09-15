@@ -1,5 +1,7 @@
 # Ignorar modelo entrenado
 model/diabetesv1.joblib
 
+data/repartidor.py
+
 # Ignorar dataset
 data/diabetes_prediction_dataset.csv
